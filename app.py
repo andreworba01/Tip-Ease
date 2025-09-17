@@ -42,11 +42,12 @@ st.set_page_config(
 st.markdown("""
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-html, body, [class*="css"]  {
+html, body, [class*="css"] {
     font-family: 'Nunito', sans-serif !important;
 }
 </style>
 """, unsafe_allow_html=True)
+
 
 # ----------------------------------------------------
 # Language Toggle
@@ -102,11 +103,15 @@ if page == T("Landing Page", "Inicio"):
         """)
     )
     st.image(logo, width=280)  # adjust width as needed
-    st.markdown("""
-            ### Seamless Resort Tipping Platform
-            Welcome to **TipEase** – Guests tip digitally, staff are rewarded instantly,  
-            and resorts gain actionable insights.
-            """)
+    st.markdown(
+    f"""
+    <div style="text-align:center;">
+        <img src="data:image/png;base64,{st.image(logo, output_format="png", use_container_width=False)}" width="240">
+    </div>
+    """,
+    unsafe_allow_html=True)
+    st.markdown("### Seamless Resort Tipping Platform")
+    st.write("Welcome to **TipEase** – Guests tip digitally, staff are rewarded instantly, and resorts gain actionable insights.")
 
 # ----------------------------------------------------
 # Dashboard
