@@ -32,7 +32,7 @@ def generate_data():
 # ----------------------------------------------------
 st.set_page_config(
     page_title="TipEase Resort",
-    page_icon="💸",
+    page_icon="",
     layout="wide"
 )
 
@@ -90,7 +90,7 @@ df["timestamp"] = [base + timedelta(days=int(d), hours=int(h))
 logo = Image.open("assets/tipease_logo_.png")
 
 if page == T("Landing Page", "Inicio"):
-    st.title("💸 TipEase")
+    st.title("TipEase")
     st.subheader(T("Seamless Resort Tipping Platform",
                    "Plataforma de Propinas sin Fricciones"))
     st.markdown(
@@ -117,7 +117,7 @@ if page == T("Landing Page", "Inicio"):
 # Dashboard
 # ----------------------------------------------------
 elif page == T("Dashboard", "Panel"):
-    st.title("💸 TipEase Resort Dashboard")
+    st.title("TipEase Resort Dashboard")
     k1,k2,k3 = st.columns(3)
     k1.metric(T("Total Tips","Propinas Totales"), f"${df['tip'].sum():,.2f}")
     k2.metric(T("Unique Guests","Huéspedes Únicos"), df["guest"].nunique())
@@ -189,12 +189,12 @@ else:
     avg_tip = df["tip"].mean()
     top_dept = df.groupby("dept")["tip"].sum().idxmax()
     max_day = df.groupby("day")["tip"].sum().idxmax()
-    st.markdown(f"- {T('📈 Highest tipping day:','📈 Día con más propinas:')} {int(max_day)}")
-    st.markdown(f"- {T('💵 Average tip:','💵 Propina promedio:')} ${avg_tip:.2f}")
-    st.markdown(f"- {T('🏝️ Strongest area:','🏝️ Área más fuerte:')} {top_dept}")
-    st.markdown(T("- 🗓️ Tip peaks around weekends — plan staffing accordingly.",
-                  "- 🗓️ Los picos de propinas suelen ser en fines de semana."))
-    st.markdown(T("- 🎁 Consider loyalty perks for top tippers.",
-                  "- 🎁 Considere beneficios de fidelidad para los mejores huéspedes."))
+    st.markdown(f"- {T('Highest tipping day:',' Día con más propinas:')} {int(max_day)}")
+    st.markdown(f"- {T('Average tip:',' Propina promedio:')} ${avg_tip:.2f}")
+    st.markdown(f"- {T(' Strongest area:',' Área más fuerte:')} {top_dept}")
+    st.markdown(T("-  Tip peaks around weekends — plan staffing accordingly.",
+                  "- Los picos de propinas suelen ser en fines de semana."))
+    st.markdown(T("-  Consider loyalty perks for top tippers.",
+                  "- Considere beneficios de fidelidad para los mejores huéspedes."))
 
 
