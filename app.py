@@ -68,14 +68,19 @@ df["day"] = pd.to_numeric(df["day"], errors="coerce").astype(int)
 df["tip"] = pd.to_numeric(df["tip"], errors="coerce").fillna(0.0)
 
 # Create a synthetic timestamp (for recent log) from Day + Time of Day bucket
-start_date = datetime.today().date() - timedelta(days=df["day"].max())
+# Create a simple timestamp using an arbitrary start date
 bucket_map = {"Morning": 10, "Afternoon": 14, "Evening": 19,
               "Mañana": 10, "Tarde": 14, "Noche": 19}
 hour = df["tod"].map(bucket_map).fillna(12).astype(int)
-df["timestamp"] = pd.to_datetime(
-    [datetime.combine(start_date + timedelta(int(d)), 
-                      datetime.min.time()) for d in df["day"]]
-) + pd.to_timedelta(hour, unit="h")
+
+# Choose a fixed start date (e.g., 15 days ago) just to create datetime stamps
+base_date = datetime.today() - timedelta(days=df["day"].max(skipna=True) or 15)
+
+df["timestamp"] = [
+    base_date + timedelta(days=int(d)) + timedelta(hours=int(h))
+    for d, h in zip(df["day"].fillna(0), hour)
+]
+
 
 # ---------------------------
 # KPI cards
