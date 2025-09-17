@@ -73,12 +73,15 @@ bucket_map = {"Morning": 10, "Afternoon": 14, "Evening": 19,
               "Mañana": 10, "Tarde": 14, "Noche": 19}
 hour = df["tod"].map(bucket_map).fillna(12).astype(int)
 
-# Choose a fixed start date (e.g., 15 days ago) just to create datetime stamps
-base_date = datetime.today() - timedelta(days=df["day"].max(skipna=True) or 15)
+# Force day column to plain Python ints, fallback to 0 if NaN
+days_list = [int(x) if pd.notna(x) else 0 for x in df["day"]]
+
+# Pick a fixed base date ~15 days ago
+base_date = datetime.today() - timedelta(days=15)
 
 df["timestamp"] = [
-    base_date + timedelta(days=int(d)) + timedelta(hours=int(h))
-    for d, h in zip(df["day"].fillna(0), hour)
+    base_date + timedelta(days=d) + timedelta(hours=int(h))
+    for d, h in zip(days_list, hour)
 ]
 
 
