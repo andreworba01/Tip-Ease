@@ -40,16 +40,11 @@ st.set_page_config(
 # Custom CSS for polished look
 # ----------------------------------------------------
 st.markdown("""
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-.block-container {padding-top:2rem; max-width:1350px; margin:auto;}
-div[data-testid="stMetric"] {
-  background:#ffffff;
-  border-radius:14px;
-  padding:1rem 1.5rem;
-  box-shadow:0 4px 12px rgba(0,0,0,0.06);
-  margin:0.5rem;
+html, body, [class*="css"]  {
+    font-family: 'Nunito', sans-serif !important;
 }
-table.dataframe tbody tr:hover {background-color:#f1f5f9;}
 </style>
 """, unsafe_allow_html=True)
 
