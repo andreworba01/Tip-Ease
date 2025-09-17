@@ -87,6 +87,8 @@ df["timestamp"] = [base + timedelta(days=int(d), hours=int(h))
 # ----------------------------------------------------
 # Landing Page
 # ----------------------------------------------------
+logo = Image.open("assets/tipease_logo_.png")
+
 if page == T("Landing Page", "Inicio"):
     st.title("💸 TipEase")
     st.subheader(T("Seamless Resort Tipping Platform",
@@ -104,10 +106,12 @@ if page == T("Landing Page", "Inicio"):
         y el resort obtiene información valiosa.
         """)
     )
-    st.image("https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1",
-             caption=T("A stress-free tipping experience",
-                       "Una experiencia de propina sin estrés"),
-             use_column_width=True)
+    st.image(logo, width=280)  # adjust width as needed
+    st.markdown("""
+            ### Seamless Resort Tipping Platform
+            Welcome to **TipEase** – Guests tip digitally, staff are rewarded instantly,  
+            and resorts gain actionable insights.
+            """)
 
 # ----------------------------------------------------
 # Dashboard
